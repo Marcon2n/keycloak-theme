@@ -7,7 +7,7 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
-import logo from './assets/img/nexusti100.png'
+import logo from './assets/img/image.png'
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -53,13 +53,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }
 
     return (
-        <div className={kcClsx("kcLoginClass")} style={{display: 'flex', height: '100vh', alignItems: 'center', justifyItems: 'center'}}>
+        <div className={kcClsx("kcLoginClass")} style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyItems: 'center' }}>
             {/* <div id="kc-header" className={kcClsx("kcHeaderClass")}>
                 <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
                     {msg("loginTitleHtml", realm.displayNameHtml)}
                 </div>
             </div> */}
-            <div className={kcClsx("kcFormCardClass")} style={{ border: "none", borderRadius: '15px',backgroundColor: 'rgba(255,255,255,0.9)' }}>
+            <div className={kcClsx("kcFormCardClass")} style={{ border: "none", borderRadius: '15px', backgroundColor: 'rgba(255,255,255,0.9)' }}>
                 <header className={kcClsx("kcFormHeaderClass")}>
                     {/* {enabledLanguages.length > 1 && (
                         <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
@@ -98,8 +98,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     {(() => {
                         const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
                             // <h1 id="kc-page-title">{headerNode}</h1>
-                            <div style={{display: 'flex', justifyContent: 'center', padding: '30px 0px'}}>
-                                <img src={logo} style={{height: '50px', width: '50px'}}></img>
+                            <div style={{ display: 'flex', justifyContent: 'center', padding: '30px 0px' }}>
+                                <img src={logo} style={{ height: '50px', width: 'auto' }}></img>
                             </div>
                         ) : (
                             <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
@@ -176,7 +176,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                         {socialProvidersNode}
                         {displayInfo && (
                             <div id="kc-info" className={kcClsx("kcSignUpClass")} >
-                                <div id="kc-info-wrapper" className={kcClsx("kcInfoAreaWrapperClass")} style={{borderBottomRightRadius: '15px', borderBottomLeftRadius: '15px'}}>
+                                <div id="kc-info-wrapper" className={kcClsx("kcInfoAreaWrapperClass")} style={{ borderBottomRightRadius: '15px', borderBottomLeftRadius: '15px' }}>
                                     {infoNode}
                                 </div>
                             </div>

@@ -5,13 +5,14 @@ import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "./Template";
 import { tss } from 'tss-react/mui'
-import backgroundImage from './assets/img/wallpaper.jpg'
+import backgroundImage from './assets/img/background-light-bright.jpg'
 const UserProfileFormFields = lazy(
     () => import("keycloakify/login/UserProfileFormFields")
 );
 
 const Login = lazy(() => import("./pages/Login"));
 const LoginResetPassword = lazy(() => import("./pages/LoginResetPassword"));
+const LoginUpdatePassword = lazy(() => import("./pages/LoginUpdatePassword"));
 
 const doMakeUserConfirmPassword = true;
 
@@ -26,6 +27,13 @@ export default function KcPage(props: { kcContext: KcContext }) {
         <Suspense>
             {(() => {
                 switch (kcContext.pageId) {
+                    case "login-update-password.ftl": return (
+                        <LoginUpdatePassword
+                            {...{ kcContext, i18n, classes }}
+                            Template={Template}
+                            doUseDefaultCss={true}
+                        />
+                    );
                     case "login.ftl": return (
                         <Login
                             {...{ kcContext, i18n, classes }}

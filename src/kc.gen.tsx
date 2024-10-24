@@ -10,9 +10,9 @@
 
 import { lazy, Suspense, type ReactNode } from "react";
 
-export type ThemeName = "nexusti-theme";
+export type ThemeName = "tnex-theme";
 
-export const themeNames: ThemeName[] = ["nexusti-theme"];
+export const themeNames: ThemeName[] = ["tnex-theme"];
 
 export type KcEnvName = never;
 

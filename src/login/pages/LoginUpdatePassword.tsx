@@ -117,14 +117,16 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                             Thay đổi mật khẩu
                         </Button>
                         {isAppInitiatedAction && (
-                            <button
-                                className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
+                            <Button
                                 type="submit"
                                 name="cancel-aia"
+                                variant="contained"
+                                sx={{ marginTop: '5px', width: "100%" }}
+                                color="error"
                                 value="true"
                             >
-                                {msg("doCancel")}
-                            </button>
+                                Hủy
+                            </Button>
                         )}
                     </div>
                 </div>

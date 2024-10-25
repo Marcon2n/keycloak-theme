@@ -105,7 +105,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
 
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
                         <Button sx={{ width: "100%" }} variant="contained" type="submit">
-                            Thay đổi mật khẩu
+                            Thay đổi
                         </Button>
                         {isAppInitiatedAction && (
                             <Button

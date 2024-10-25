@@ -15,7 +15,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { FormHelperText } from "@mui/material";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -32,6 +31,8 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
     const [showPassword, setShowPassword] = useState(false);
+
+    console.log(kcContext.message)
 
     return (
         <Template
@@ -86,6 +87,10 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                 </>
             }
         >
+            <div style={{ backgroundColor: '#eff6ff', margin: '-40px -40px 40px -40px', padding: '0px 40px 10px 40px' }}>
+                <div style={{ fontSize: "25px", fontWeight: '700' }}>Đăng nhập</div>
+                <div style={{ fontSize: "14px" }}>Sử dụng username và password để đăng nhập</div>
+            </div>
             <div id="kc-form">
                 <div id="kc-form-wrapper">
                     {realm.password && (
@@ -101,14 +106,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                             {!usernameHidden && (
                                 <div className={kcClsx("kcFormGroupClass")}>
                                     <TextField
-                                        sx={{ width: "100%", minWidth: 400}}
+                                        sx={{ width: "100%", minWidth: 400, paddingBottom: '10px' }}
                                         required
                                         label={
                                             !realm.loginWithEmailAllowed
-                                                ? "Tên đăng nhập"
+                                                ? "Username"
                                                 : !realm.registrationEmailAsUsername
-                                                  ? "Tên đăng nhập hoặc email"
-                                                  : "email"
+                                                    ? "Username hoặc email"
+                                                    : "Email"
                                         }
                                         tabIndex={2}
                                         id="username"
@@ -118,21 +123,21 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                         autoFocus
                                         autoComplete="username"
                                         size="small"
-                                        error={messagesPerField.existsError("username", "password")}
-                                        helperText={
-                                            messagesPerField.existsError("username", "password") && (
-                                                <span id="input-error" style={{ color: "#d32f2f" }} aria-live="polite">
-                                                    Thông tin tài khoản hoặc mật khẩu sai
-                                                </span>
-                                            )
-                                        }
+                                    // error={messagesPerField.existsError("username", "password")}
+                                    // helperText={
+                                    //     messagesPerField.existsError("username", "password") && (
+                                    //         <span id="input-error" style={{ color: "#d32f2f" }} aria-live="polite">
+                                    //             Thông tin tài khoản hoặc mật khẩu sai
+                                    //         </span>
+                                    //     )
+                                    // }
                                     />
                                 </div>
                             )}
 
                             <div className={kcClsx("kcFormGroupClass")}>
                                 <FormControl sx={{ width: "100%", minWidth: 400 }} variant="outlined" size="small">
-                                    <InputLabel required style={messagesPerField.existsError("username", "password") ? {color: '#d32f2f'} : {}}>Mật khẩu</InputLabel>
+                                    <InputLabel required>Password</InputLabel>
                                     <OutlinedInput
                                         tabIndex={3}
                                         id="password"
@@ -152,10 +157,10 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             </InputAdornment>
                                         }
                                         label="Password"
-                                        error={messagesPerField.existsError("username", "password")}
+                                    // error={messagesPerField.existsError("username", "password")}
                                     />
 
-                                    <FormHelperText>
+                                    {/* <FormHelperText>
                                         {usernameHidden && messagesPerField.existsError("username", "password") && (
                                             <span
                                                 id="input-error"
@@ -166,7 +171,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                                 }}
                                             />
                                         )}
-                                    </FormHelperText>
+                                    </FormHelperText> */}
                                 </FormControl>
                             </div>
 
@@ -182,7 +187,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                                     type="checkbox"
                                                     defaultChecked={!!login.rememberMe}
                                                 />{" "}
-                                                Ghi nhớ
+                                                <span style={{ fontWeight: '600', color: 'black' }}>Nhớ đăng nhập</span>
                                             </label>
                                         </div>
                                     )}
@@ -197,6 +202,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                     )}
                                 </div>
                             </div>
+
+                            {messagesPerField.existsError("username", "password") ? <div style={{ borderRadius: '5px', backgroundColor: '#feebec', padding: '5px 10px', color: '#641723', fontWeight: '600' }}>
+                                Mật khẩu hoặc username không đúng
+                            </div> : null}
+
+                            {kcContext.message && <div style={{ borderRadius: '5px', backgroundColor: '#feebec', padding: '5px 10px', fontWeight: '700' }} dangerouslySetInnerHTML={{
+                                __html: kcSanitize(kcContext.message.summary)
+                            }}></div>}
 
                             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
                                 <input type="hidden" id="id-hidden-input" name="credentialId" value={auth.selectedCredential} />

@@ -28,6 +28,10 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
             infoNode={realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}
             headerNode={msg("emailForgotTitle")}
         >
+            <div style={{ backgroundColor: '#eff6ff', margin: '-40px -40px 20px -40px', padding: '0px 40px 10px 40px' }}>
+                <div style={{ fontSize: "25px", fontWeight: '700' }}>Yêu cầu đổi mật khẩu</div>
+                <div style={{ fontSize: "14px" }}>Điền thông tin email hoặc username để gửi thông báo</div>
+            </div>
             <form id="kc-reset-password-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
                 <div className={kcClsx("kcFormGroupClass")}>
                     <div className={kcClsx("kcInputWrapperClass")}>
@@ -36,10 +40,10 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                             required
                             label={
                                 !realm.loginWithEmailAllowed
-                                    ? "Tên đăng nhập"
+                                    ? "Username"
                                     : !realm.registrationEmailAsUsername
-                                      ? "Tên đăng nhập hoặc email"
-                                      : "Email"
+                                        ? "Username hoặc email"
+                                        : "Email"
                             }
                             type="text"
                             id="username"
@@ -48,14 +52,6 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                             defaultValue={auth.attemptedUsername ?? ""}
                             tabIndex={2}
                             size="small"
-                            error={messagesPerField.existsError("username")}
-                            helperText={
-                                messagesPerField.existsError("username") && (
-                                    <span id="input-error-username" aria-live="polite" style={{ color: "#d32f2f" }}>
-                                        Sai tên đăng nhập
-                                    </span>
-                                )
-                            }
                         />
                     </div>
                 </div>
@@ -73,6 +69,10 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                             </span>
                         </div>
                     </div>
+
+                    {messagesPerField.existsError("username") ? <div style={{ width: "100%", borderRadius: '5px', backgroundColor: '#feebec', padding: '5px 10px', color: '#641723', fontWeight: '600', margin: "15px 18px -10px" }}>
+                        Sai tên đăng nhập
+                    </div> : null}
 
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
                         <Button sx={{ width: "100%" }} variant="contained" type="submit">

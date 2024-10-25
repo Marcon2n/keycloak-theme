@@ -58,7 +58,7 @@
                 <div style="justify-items: first baseline">
                   <img
                     alt="new1"
-                    src="https://drive.google.com/drive-viewer/AKGpihbpQAZzUjw8mrtVqxmk_giU3Rxnsq_QwSXUmS6EGyoFxM_ygboAZPW4t3kzyDkhgvdwPAB_MhqDyUXA5hHITKa3VPFV1Rj45g=s2560"
+                    src="https://static.tnex.com.vn/uploads/2022/06/logo.png"
                     style="
                       max-height: 60px;
                       outline: none;

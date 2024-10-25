@@ -7,7 +7,6 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
-import logo from './assets/img/image.png'
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -27,6 +26,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     } = props;
 
     const { kcClsx } = getKcClsx({ doUseDefaultCss, classes });
+
+    console.log(props)
 
     const { msg, msgStr } = i18n;
 
@@ -53,14 +54,14 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }
 
     return (
-        <div className={kcClsx("kcLoginClass")} style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyItems: 'center' }}>
+        <div className={kcClsx("kcLoginClass")} style={{ display: 'flex', flexDirection: 'column', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
             {/* <div id="kc-header" className={kcClsx("kcHeaderClass")}>
                 <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
                     {msg("loginTitleHtml", realm.displayNameHtml)}
                 </div>
             </div> */}
             <div className={kcClsx("kcFormCardClass")} style={{ border: "none", borderRadius: '15px', backgroundColor: 'rgba(255,255,255,0.9)' }}>
-                <header className={kcClsx("kcFormHeaderClass")}>
+                <header className={kcClsx("kcFormHeaderClass")} style={{ margin: "-20px -40px 0px", backgroundColor: '#eff6ff', padding: "0px 40px", borderTopRightRadius: '15px', borderTopLeftRadius: "15px" }}>
                     {/* {enabledLanguages.length > 1 && (
                         <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
                             <div id="kc-locale-wrapper" className={kcClsx("kcLocaleWrapperClass")}>
@@ -98,8 +99,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     {(() => {
                         const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
                             // <h1 id="kc-page-title">{headerNode}</h1>
-                            <div style={{ display: 'flex', justifyContent: 'center', padding: '30px 0px' }}>
-                                <img src={logo} style={{ height: '50px', width: 'auto' }}></img>
+                            <div style={{ display: 'flex', padding: '30px 0px' }}>
+                                <img src="https://static.tnex.com.vn/uploads/2022/06/logo.png" style={{ height: '50px', width: 'auto' }}></img>
                             </div>
                         ) : (
                             <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
@@ -133,7 +134,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 <div id="kc-content">
                     <div id="kc-content-wrapper">
                         {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
-                        {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
+                        {/* {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
                             <div
                                 className={clsx(
                                     `alert-${message.type}`,
@@ -154,7 +155,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                     }}
                                 />
                             </div>
-                        )}
+                        )} */}
                         {children}
                         {auth !== undefined && auth.showTryAnotherWayLink && (
                             <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
@@ -184,6 +185,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     </div>
                 </div>
             </div>
+            <div style={{ fontSize: '13px', margin: '10px', color: '#64748b', fontWeight: '600' }}>Powered by Nexusti JSC</div>
         </div>
     );
 }

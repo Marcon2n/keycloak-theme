@@ -16,6 +16,18 @@ export const Default: Story = {
     render: () => <KcPageStory />
 };
 
+export const Vietnam: Story = {
+    render: ()=> (
+        <KcPageStory
+            kcContext={{
+                locale: {
+                    currentLanguageTag: "vi"
+                }
+            }}
+        />
+    )
+};
+
 export const WithInvalidCredential: Story = {
     render: () => (
         <KcPageStory

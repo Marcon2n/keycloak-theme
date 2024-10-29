@@ -93,17 +93,6 @@
                   "
                 />
               </div>
-              <h3
-                style="
-                  font-weight: bold;
-                  text-align: left;
-                  margin: 0;
-                  font-size: 20px;
-                  padding: 0px 24px;
-                "
-              >
-                Bạn đang yêu cầu thay đổi mật khẩu?
-              </h3>
     <#nested>
 
     <div style="padding: 16px 24px 16px 24px">

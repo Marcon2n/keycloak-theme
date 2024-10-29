@@ -16,6 +16,18 @@ export const Default: Story = {
     render: () => <KcPageStory />
 };
 
+export const Vietnam: Story = {
+    render: ()=> (
+        <KcPageStory
+            kcContext={{
+                locale: {
+                    currentLanguageTag: "vi"
+                }
+            }}
+        />
+    )
+};
+
 /**
  * WithPasswordError:
  * - Purpose: Tests when there is an error in the password input (e.g., invalid password).

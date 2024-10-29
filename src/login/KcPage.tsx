@@ -13,8 +13,6 @@ const UserProfileFormFields = lazy(
 const Login = lazy(() => import("./pages/Login"));
 const LoginResetPassword = lazy(() => import("./pages/LoginResetPassword"));
 const LoginUpdatePassword = lazy(() => import("./pages/LoginUpdatePassword"));
-const Info = lazy(() => import("./pages/Info"));
-const Error = lazy(() => import("./pages/Error"));
 
 const doMakeUserConfirmPassword = true;
 
@@ -29,17 +27,6 @@ export default function KcPage(props: { kcContext: KcContext }) {
         <Suspense>
             {(() => {
                 switch (kcContext.pageId) {
-                    case "error.ftl": return (
-                        <Error
-                            {...{ kcContext, i18n, classes }}
-                            Template={Template}
-                            doUseDefaultCss={true}
-                        />
-                    );
-                    case "info.ftl": return (
-                        <Info
-                            {...{ kcContext, i18n, classes }}
-                            Template={Template} doUseDefaultCss={true} />);
                     case "login-update-password.ftl": return (
                         <LoginUpdatePassword
                             {...{ kcContext, i18n, classes }}

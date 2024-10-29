@@ -1,9 +1,9 @@
 import { getKcClsx } from "keycloakify/login/lib/kcClsx";
+import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { Button, TextField } from "@mui/material";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
 export default function LoginResetPassword(props: PageProps<Extract<KcContext, { pageId: "login-reset-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -15,7 +15,7 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
 
     const { url, realm, auth, messagesPerField } = kcContext;
 
-    const { msg } = i18n;
+    const { msg, msgStr } = i18n;
 
     return (
         <Template
@@ -28,10 +28,6 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
             infoNode={realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}
             headerNode={msg("emailForgotTitle")}
         >
-            <div style={{ backgroundColor: '#eff6ff', margin: '-40px -40px 20px -40px', padding: '0px 40px 10px 40px' }}>
-                <div style={{ fontSize: "25px", fontWeight: '700' }}>Yêu cầu đổi mật khẩu</div>
-                <div style={{ fontSize: "14px" }}>Điền thông tin email hoặc username để gửi thông báo</div>
-            </div>
             <form id="kc-reset-password-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
                 <div className={kcClsx("kcFormGroupClass")}>
                     <div className={kcClsx("kcInputWrapperClass")}>
@@ -40,10 +36,10 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                             required
                             label={
                                 !realm.loginWithEmailAllowed
-                                    ? "Username"
+                                    ? msg("username")
                                     : !realm.registrationEmailAsUsername
-                                        ? "Username hoặc email"
-                                        : "Email"
+                                      ? msg("usernameOrEmail")
+                                      : msg("email")
                             }
                             type="text"
                             id="username"
@@ -59,24 +55,34 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
                             <span>
-                                <a href={url.loginUrl}>
-                                    <div style={{ display: "flex", alignItems: "center", gap: "2px" }}>
-                                        <KeyboardDoubleArrowLeftIcon style={{ fontSize: "10px" }} />
-
-                                        <span>Quay lại đăng nhập</span>
-                                    </div>
-                                </a>
+                                <a href={url.loginUrl}>{msg("backToLogin")}</a>
                             </span>
                         </div>
                     </div>
 
-                    {messagesPerField.existsError("username") ? <div style={{ width: "100%", borderRadius: '5px', backgroundColor: '#feebec', padding: '5px 10px', color: '#641723', fontWeight: '600', margin: "15px 18px -10px" }}>
-                        Sai tên đăng nhập
-                    </div> : null}
+                    {messagesPerField.existsError("username") ? (
+                        <div
+                            style={{
+                                width: "100%",
+                                borderRadius: "5px",
+                                backgroundColor: "#feebec",
+                                padding: "5px 10px",
+                                color: "#641723",
+                                fontWeight: "600",
+                                margin: "15px 18px -10px"
+                            }}
+                        >
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: kcSanitize(messagesPerField.get("username"))
+                                }}
+                            />
+                        </div>
+                    ) : null}
 
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
                         <Button sx={{ width: "100%" }} variant="contained" type="submit">
-                            Gửi thông tin
+                            {msgStr("doSubmit")}
                         </Button>
                     </div>
                 </div>
